@@ -13,6 +13,7 @@ A full-stack Flask web application for managing product inventory across multipl
 
 - Product Management (Add/Edit/Delete/View)
 - Location Management (Add/Edit/Delete/View)
+- 
 - Product Movement Tracking (with timestamps)
 - Dynamic Stock Report per Warehouse
 - Form validation and error messages
@@ -77,4 +78,4 @@ The application will be available at `http://127.0.0.1:5000`.
 
 ## Screenshots
 
-*(Add screenshots of the application here, e.g., dashboard, product list, balance report)*
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/85e32c9c-5104-4e5a-9e7a-2ff76ed2352a" />
