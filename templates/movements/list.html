@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block title %}Movements{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="main-title mb-0">Movement History</h1>
+    <a href="{{ url_for('movement_routes.add_movement') }}" class="btn btn-primary">Log Movement</a>
+</div>
+
+<div class="card-section">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Product ID</th>
+                <th>From Location</th>
+                <th>To Location</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movement in movements %}
+            <tr>
+                <td>{{ movement.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>{{ movement.product_id }}</td>
+                <td>{{ movement.from_location if movement.from_location else 'N/A' }}</td>
+                <td>{{ movement.to_location if movement.to_location else 'N/A' }}</td>
+                <td>{{ movement.qty }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="text-center">No movements found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

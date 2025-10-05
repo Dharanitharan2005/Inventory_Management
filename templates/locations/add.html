@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Add Location
+{% endblock %}
+
+{% block content %}
+    <h1>Add Location</h1>
+    <form method="post">
+        <div class="mb-3">
+            <label for="location_id" class="form-label">Location ID</label>
+            <input type="text" class="form-control" id="location_id" name="location_id" value="{{ form_data.location_id if form_data }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="location_name" class="form-label">Location Name</label>
+            <input type="text" class="form-control" id="location_name" name="location_name" value="{{ form_data.location_name if form_data }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Location</button>
+        <a href="{{ url_for('location_routes.locations') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

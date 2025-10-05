@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block title %}Edit Movement{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Edit Movement</h1>
+<form method="POST" action="{{ url_for('movement_routes.edit_movement', movement_id=movement._id) }}">
+    <div class="mb-3">
+        <label for="product_id" class="form-label">Product</label>
+        <select class="form-select" id="product_id" name="product_id" required>
+            {% for product in products %}
+            <option value="{{ product._id }}" {% if product._id == movement.product_id %}selected{% endif %}>{{ product.product_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="from_location" class="form-label">From Location</label>
+        <select class="form-select" id="from_location" name="from_location">
+            <option value="">None</option>
+            {% for location in locations %}
+            <option value="{{ location._id }}" {% if location._id == movement.from_location %}selected{% endif %}>{{ location.location_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="to_location" class="form-label">To Location</label>
+        <select class="form-select" id="to_location" name="to_location">
+            <option value="">None</option>
+            {% for location in locations %}
+            <option value="{{ location._id }}" {% if location._id == movement.to_location %}selected{% endif %}>{{ location.location_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="qty" class="form-label">Quantity</label>
+        <input type="number" class="form-control" id="qty" name="qty" value="{{ movement.qty }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Movement</button>
+    <a href="{{ url_for('movement_routes.movements') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
