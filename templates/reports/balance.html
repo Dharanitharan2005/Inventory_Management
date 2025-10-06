@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block title %}Stock Balance Report{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="main-title mb-0">Stock Balance Report</h1>
+    <a href="{{ url_for('report_routes.balance_report', export='excel') }}" class="btn btn-success">
+        <i class="fas fa-file-excel"></i> Export to Excel
+    </a>
+</div>
+
+<div class="card-section">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Warehouse</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in balance_data %}
+                {% if item.quantity > 0 %}
+                <tr>
+                    <td>{{ item.product_name }}</td>
+                    <td>{{ item.location_name }}</td>
+                    <td>{{ item.quantity }}</td>
+                </tr>
+                {% endif %}
+            {% else %}
+            <tr>
+                <td colspan="3" class="text-center">No stock data available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

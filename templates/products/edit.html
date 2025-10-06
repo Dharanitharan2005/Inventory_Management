@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Edit Product
+{% endblock %}
+
+{% block content %}
+    <h1>Edit Product</h1>
+    <form method="post">
+        <div class="mb-3">
+            <label for="product_name" class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="product_name" name="product_name" value="{{ product.product_name }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description">{{ product.description }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="location_id" class="form-label">Default Location (Optional)</label>
+            <select class="form-select" id="location_id" name="location_id">
+                <option value="">None</option>
+                {% for location in locations %}
+                <option value="{{ location._id }}" {% if product.location_id == location._id %}selected{% endif %}>{{ location.location_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Product</button>
+        <a href="{{ url_for('product_routes.products') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

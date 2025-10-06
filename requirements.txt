@@ -1,0 +1,8 @@
+Flask
+Flask-PyMongo
+python-dotenv
+pandas
+openpyxl
+pymongo==4.8.0
+dnspython
+certifi==2024.7.4

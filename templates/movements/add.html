@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Add Movement
+{% endblock %}
+{% block content %}
+    <h1>Add Movement</h1>
+    <form method="post">
+        <div class="mb-3">
+            <label for="product_id" class="form-label">Product</label>
+            <select class="form-select" id="product_id" name="product_id" required>
+                <option value="">Select a product</option>
+                {% for product in products %}
+                    <option value="{{ product._id }}" {% if form_data and form_data.product_id == product._id %}selected{% endif %}>{{ product.product_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="from_location" class="form-label">From Location</label>
+            <select class="form-select" id="from_location" name="from_location">
+                <option value="">None</option>
+                {% for location in locations %}
+                    <option value="{{ location._id }}" {% if form_data and form_data.from_location == location._id %}selected{% endif %}>{{ location.location_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="to_location" class="form-label">To Location</label>
+            <select class="form-select" id="to_location" name="to_location">
+                <option value="">None</option>
+                {% for location in locations %}
+                    <option value="{{ location._id }}" {% if form_data and form_data.to_location == location._id %}selected{% endif %}>{{ location.location_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="qty" class="form-label">Quantity</label>
+            <input type="number" class="form-control" id="qty" name="qty" value="{{ form_data.qty if form_data }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Movement</button>
+        <a href="{{ url_for('movement_routes.movements') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}
